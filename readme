@@ -1,0 +1,33 @@
+To runs the simstack code (https://protect-eu.mimecast.com/s/Jgz1CmyMATvwomRTGkN-x?domain=github.com:
+
+Make maps: Test_mask_eff.ipynb (prepare simstack)
+	- reads herschel map and mask (moc) from prior catalogue
+	- creates new herschel map with NaN for masked pixels
+	- it can also crop the mask
+
+Make Catalogue: prep_sim.ipynb (prepare simstack)
+	- reads catalogue, selects ra, dec, magnitude (or flux), error on mag or flux, and redshift
+	- selects sources above a selection threshold
+	- if flux -> convert to AB magnitude
+	- saves csv file with: ra, dec, ab magnitude, mass (not used), class (used for redshift, could be star forming or not), ab magnitude error
+
+The CODE: now both in: point_mat_real.ipynb (python simstack -> simstack master)
+	
+	point_mat_real.py:
+	- list the names of the catalogue, example: list_names = ['MIPS', 'VLS'] in this case the code will use: MIPS.csv as prior catalogue
+		and afther its finished it will use VLA.csv
+		map_names = the names of the maps which use the MOC for (in this case) MIPS and VLA so 2 maps
+		emap_names = coresponding error map
+		needs fwhm of psf
+		creates a fits file with the pointing matrix
+	simple_stacking_bot.py
+	- fits the poiting matrix and saves mean flux per layer
+
+
+Make plots: simstack_sly_final2.ipynb
+	- makes all plots for paper (not relevant, probably easier to use own code)
+
+
+
+
+
